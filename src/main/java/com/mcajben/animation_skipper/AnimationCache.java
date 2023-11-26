@@ -1,0 +1,191 @@
+package com.mcajben.animation_skipper;
+
+import java.time.Instant;
+
+import static net.runelite.api.AnimationID.*;
+
+public class AnimationCache {
+    private Instant animationDelay = Instant.MIN;
+    /**
+     * @return true if the user is in an animation
+     */
+    public boolean onClientTick(int playerAnimation) {
+        final Instant now = Instant.now();
+        switch (playerAnimation) {
+            case MAGIC_LUNAR_SHARED:
+            case MAGIC_LUNAR_PLANK_MAKE:
+            case MAGIC_LUNAR_STRING_JEWELRY:
+            case COOKING_FIRE:
+            case COOKING_RANGE:
+            case COOKING_WINE:
+            case FIREMAKING:
+            case FIREMAKING_FORESTERS_CAMPFIRE_ARCTIC_PINE:
+            case FIREMAKING_FORESTERS_CAMPFIRE_BLISTERWOOD:
+            case FIREMAKING_FORESTERS_CAMPFIRE_LOGS:
+            case FIREMAKING_FORESTERS_CAMPFIRE_MAGIC:
+            case FIREMAKING_FORESTERS_CAMPFIRE_MAHOGANY:
+            case FIREMAKING_FORESTERS_CAMPFIRE_MAPLE:
+            case FIREMAKING_FORESTERS_CAMPFIRE_OAK:
+            case FIREMAKING_FORESTERS_CAMPFIRE_REDWOOD:
+            case FIREMAKING_FORESTERS_CAMPFIRE_TEAK:
+            case FIREMAKING_FORESTERS_CAMPFIRE_WILLOW:
+            case FIREMAKING_FORESTERS_CAMPFIRE_YEW:
+            case FISHING_BIG_NET:
+            case FISHING_NET:
+            case FISHING_POLE_CAST:
+            case FISHING_CAGE:
+            case FISHING_HARPOON:
+            case FISHING_BARBTAIL_HARPOON:
+            case FISHING_DRAGON_HARPOON:
+            case FISHING_DRAGON_HARPOON_OR:
+            case FISHING_CRYSTAL_HARPOON:
+            case FISHING_INFERNAL_HARPOON:
+            case FISHING_TRAILBLAZER_HARPOON:
+            case FISHING_KARAMBWAN:
+            case FISHING_OILY_ROD:
+            case FISHING_CRUSHING_INFERNAL_EELS:
+            case FISHING_CUTTING_SACRED_EELS:
+            case FISHING_BAREHAND:
+            case FISHING_BAREHAND_CAUGHT_SHARK_1:
+            case FISHING_BAREHAND_CAUGHT_SHARK_2:
+            case FISHING_BAREHAND_CAUGHT_SWORDFISH_1:
+            case FISHING_BAREHAND_CAUGHT_SWORDFISH_2:
+            case FISHING_BAREHAND_CAUGHT_TUNA_1:
+            case FISHING_BAREHAND_CAUGHT_TUNA_2:
+            case FISHING_BAREHAND_WINDUP_1:
+            case FISHING_BAREHAND_WINDUP_2:
+            case FISHING_PEARL_ROD:
+            case FISHING_PEARL_FLY_ROD:
+            case FISHING_PEARL_BARBARIAN_ROD:
+            case FISHING_PEARL_ROD_2:
+            case FISHING_PEARL_FLY_ROD_2:
+            case FISHING_PEARL_BARBARIAN_ROD_2:
+            case FISHING_PEARL_OILY_ROD:
+            case FISHING_BARBARIAN_ROD:
+            case MINING_BRONZE_PICKAXE:
+            case MINING_IRON_PICKAXE:
+            case MINING_STEEL_PICKAXE:
+            case MINING_BLACK_PICKAXE:
+            case MINING_MITHRIL_PICKAXE:
+            case MINING_ADAMANT_PICKAXE:
+            case MINING_RUNE_PICKAXE:
+            case MINING_GILDED_PICKAXE:
+            case MINING_DRAGON_PICKAXE:
+            case MINING_DRAGON_PICKAXE_OR:
+            case MINING_DRAGON_PICKAXE_UPGRADED:
+            case MINING_INFERNAL_PICKAXE:
+            case MINING_3A_PICKAXE:
+            case MINING_CRYSTAL_PICKAXE:
+            case MINING_DRAGON_PICKAXE_OR_TRAILBLAZER:
+            case MINING_TRAILBLAZER_PICKAXE:
+            case MINING_TRAILBLAZER_PICKAXE_2:
+            case MINING_TRAILBLAZER_PICKAXE_3:
+            case DENSE_ESSENCE_CHIPPING:
+            case MINING_CRASHEDSTAR_BRONZE:
+            case MINING_CRASHEDSTAR_IRON:
+            case MINING_CRASHEDSTAR_STEEL:
+            case MINING_CRASHEDSTAR_BLACK:
+            case MINING_CRASHEDSTAR_MITHRIL:
+            case MINING_CRASHEDSTAR_ADAMANT:
+            case MINING_CRASHEDSTAR_RUNE:
+            case MINING_CRASHEDSTAR_GILDED:
+            case MINING_CRASHEDSTAR_DRAGON:
+            case MINING_CRASHEDSTAR_DRAGON_UPGRADED:
+            case MINING_CRASHEDSTAR_DRAGON_OR:
+            case MINING_CRASHEDSTAR_DRAGON_OR_TRAILBLAZER:
+            case MINING_CRASHEDSTAR_INFERNAL:
+            case MINING_CRASHEDSTAR_3A:
+            case MINING_CRASHEDSTAR_CRYSTAL:
+            case WOODCUTTING_BRONZE:
+            case WOODCUTTING_IRON:
+            case WOODCUTTING_STEEL:
+            case WOODCUTTING_BLACK:
+            case WOODCUTTING_MITHRIL:
+            case WOODCUTTING_ADAMANT:
+            case WOODCUTTING_RUNE:
+            case WOODCUTTING_GILDED:
+            case WOODCUTTING_DRAGON:
+            case WOODCUTTING_DRAGON_OR:
+            case WOODCUTTING_INFERNAL:
+            case WOODCUTTING_3A_AXE:
+            case WOODCUTTING_CRYSTAL:
+            case WOODCUTTING_TRAILBLAZER:
+            case WOODCUTTING_2H_BRONZE:
+            case WOODCUTTING_2H_IRON:
+            case WOODCUTTING_2H_STEEL:
+            case WOODCUTTING_2H_BLACK:
+            case WOODCUTTING_2H_MITHRIL:
+            case WOODCUTTING_2H_ADAMANT:
+            case WOODCUTTING_2H_RUNE:
+            case WOODCUTTING_2H_DRAGON:
+            case WOODCUTTING_2H_3A:
+            case FLETCHING_BOW_CUTTING:
+            case FLETCHING_STRING_NORMAL_SHORTBOW:
+            case FLETCHING_STRING_NORMAL_LONGBOW:
+            case FLETCHING_STRING_OAK_SHORTBOW:
+            case FLETCHING_STRING_OAK_LONGBOW:
+            case FLETCHING_STRING_WILLOW_SHORTBOW:
+            case FLETCHING_STRING_WILLOW_LONGBOW:
+            case FLETCHING_STRING_MAPLE_SHORTBOW:
+            case FLETCHING_STRING_MAPLE_LONGBOW:
+            case FLETCHING_STRING_YEW_SHORTBOW:
+            case FLETCHING_STRING_YEW_LONGBOW:
+            case FLETCHING_STRING_MAGIC_SHORTBOW:
+            case FLETCHING_STRING_MAGIC_LONGBOW:
+            case FLETCHING_ATTACH_BOLT_TIPS_TO_BRONZE_BOLT:
+            case FLETCHING_ATTACH_BOLT_TIPS_TO_IRON_BROAD_BOLT:
+            case FLETCHING_ATTACH_BOLT_TIPS_TO_BLURITE_BOLT:
+            case FLETCHING_ATTACH_BOLT_TIPS_TO_STEEL_BOLT:
+            case FLETCHING_ATTACH_BOLT_TIPS_TO_MITHRIL_BOLT:
+            case FLETCHING_ATTACH_BOLT_TIPS_TO_ADAMANT_BOLT:
+            case FLETCHING_ATTACH_BOLT_TIPS_TO_RUNE_BOLT:
+            case FLETCHING_ATTACH_BOLT_TIPS_TO_DRAGON_BOLT:
+            case FLETCHING_ATTACH_HEADS:
+            case FLETCHING_ATTACH_FEATHERS_TO_ARROWSHAFT:
+            case HERBLORE_MAKE_TAR:
+            case HERBLORE_POTIONMAKING:
+            case HERBLORE_PESTLE_AND_MORTAR:
+            case GEM_CUTTING_OPAL:
+            case GEM_CUTTING_JADE:
+            case GEM_CUTTING_REDTOPAZ:
+            case GEM_CUTTING_SAPPHIRE:
+            case GEM_CUTTING_EMERALD:
+            case GEM_CUTTING_RUBY:
+            case GEM_CUTTING_DIAMOND:
+            case GEM_CUTTING_AMETHYST:
+            case CRAFTING_GLASSBLOWING:
+            case CRAFTING_SPINNING:
+            case CRAFTING_LOOM:
+            case CRAFTING_BATTLESTAVES:
+            case CRAFTING_LEATHER:
+            case CRAFTING_POTTERS_WHEEL:
+            case CRAFTING_POTTERY_OVEN:
+            case DENSE_ESSENCE_CHISELING:
+            case SMITHING_ANVIL:
+            case SMITHING_SMELTING:
+            case SMITHING_CANNONBALL:
+            case SMITHING_IMCANDO_HAMMER:
+                return true;
+            case MINING_MOTHERLODE_BRONZE:
+            case MINING_MOTHERLODE_IRON:
+            case MINING_MOTHERLODE_STEEL:
+            case MINING_MOTHERLODE_BLACK:
+            case MINING_MOTHERLODE_MITHRIL:
+            case MINING_MOTHERLODE_ADAMANT:
+            case MINING_MOTHERLODE_RUNE:
+            case MINING_MOTHERLODE_GILDED:
+            case MINING_MOTHERLODE_DRAGON:
+            case MINING_MOTHERLODE_DRAGON_OR:
+            case MINING_MOTHERLODE_DRAGON_UPGRADED:
+            case MINING_MOTHERLODE_INFERNAL:
+            case MINING_MOTHERLODE_3A:
+            case MINING_MOTHERLODE_DRAGON_OR_TRAILBLAZER:
+            case MINING_MOTHERLODE_TRAILBLAZER:
+            case MINING_MOTHERLODE_CRYSTAL:
+                animationDelay = now.plusMillis(750);
+                return true;
+            default:
+                return animationDelay.isAfter(now);
+        }
+    }
+}
