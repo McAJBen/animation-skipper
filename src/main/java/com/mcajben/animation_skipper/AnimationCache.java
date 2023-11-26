@@ -6,6 +6,7 @@ import static net.runelite.api.AnimationID.*;
 
 public class AnimationCache {
     private Instant animationDelay = Instant.MIN;
+
     /**
      * @return true if the user is in an animation
      */
@@ -184,6 +185,7 @@ public class AnimationCache {
             case MINING_MOTHERLODE_CRYSTAL:
                 animationDelay = now.plusMillis(750);
                 return true;
+            case IDLE:
             default:
                 return animationDelay.isAfter(now);
         }

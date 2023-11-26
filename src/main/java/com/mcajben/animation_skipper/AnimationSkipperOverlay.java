@@ -40,6 +40,10 @@ public class AnimationSkipperOverlay extends Overlay {
                     (int) (overlayColor.getAlpha() * opacity)
             ));
             graphics.fill(new Rectangle(client.getCanvas().getSize()));
+
+            graphics.setFont(new Font("Times New Roman", Font.BOLD, 48));
+            graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OUT));
+            drawStringCentered(graphics, client.getCanvas(), "ONE HOUR LATER");
         }
 
         return null;
@@ -77,5 +81,14 @@ public class AnimationSkipperOverlay extends Overlay {
         } else {
             return 1.0f - fadeProgress;
         }
+    }
+
+    private static void drawStringCentered(Graphics2D graphics, Canvas canvas, String text) {
+        final FontMetrics metrics = graphics.getFontMetrics();
+        final int width = metrics.stringWidth(text);
+        final int height = metrics.getHeight();
+        final int x = (canvas.getWidth() - width) / 2;
+        final int y = canvas.getHeight() / 2 + height / 2;
+        graphics.drawString(text, x, y);
     }
 }

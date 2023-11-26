@@ -14,7 +14,7 @@ public interface AnimationSkipperConfig extends Config {
             description = "Color of the full screen overlay"
     )
     default Color overlayColor() {
-        return new Color(0, 0, 0, 128);
+        return new Color(0, 0, 0, 160);
     }
 
     @ConfigItem(
@@ -24,6 +24,6 @@ public interface AnimationSkipperConfig extends Config {
     )
     @Units(Units.MILLISECONDS)
     default int fadeDuration() {
-        return 250;
+        return 500;
     }
 }
