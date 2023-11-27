@@ -42,7 +42,8 @@ public class AnimationSkipperOverlay extends Overlay {
             graphics.fill(new Rectangle(client.getCanvas().getSize()));
 
             graphics.setFont(new Font("Times New Roman", Font.BOLD, 48));
-            graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.DST_OUT));
+            graphics.setComposite(AlphaComposite.DstOut);
+            graphics.setColor(Color.white);
             drawStringCentered(graphics, client.getCanvas(), "ONE HOUR LATER");
         }
 
