@@ -183,7 +183,7 @@ public class AnimationCache {
             case MINING_MOTHERLODE_DRAGON_OR_TRAILBLAZER:
             case MINING_MOTHERLODE_TRAILBLAZER:
             case MINING_MOTHERLODE_CRYSTAL:
-                animationDelay = now.plusMillis(750);
+                animationDelay = now.plusMillis(1800);
                 return true;
             case IDLE:
             default:
