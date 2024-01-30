@@ -26,4 +26,24 @@ public interface AnimationSkipperConfig extends Config {
     default int fadeDuration() {
         return 500;
     }
+
+    @ConfigItem(
+            keyName = "textSize",
+            name = "Text Size",
+            description = "Text Size"
+    )
+    @Range(min = 8, max = 96)
+    default int textSize() {
+        return 36;
+    }
+
+    @ConfigItem(
+            keyName = "debounceDuration",
+            name = "Debounce duration",
+            description = "Time between animation ending and the overlay fading out. Increasing the debounce duration can prevent flickering."
+    )
+    @Units(Units.MILLISECONDS)
+    default int debounceDuration() {
+        return 1800;
+    }
 }

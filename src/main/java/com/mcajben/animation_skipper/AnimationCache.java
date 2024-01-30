@@ -5,7 +5,6 @@ import java.time.Instant;
 import static net.runelite.api.AnimationID.*;
 
 public class AnimationCache {
-    private Instant animationDelay = Instant.MIN;
 
     /**
      * @return true if the user is in an animation
@@ -166,7 +165,6 @@ public class AnimationCache {
             case SMITHING_SMELTING:
             case SMITHING_CANNONBALL:
             case SMITHING_IMCANDO_HAMMER:
-                return true;
             case MINING_MOTHERLODE_BRONZE:
             case MINING_MOTHERLODE_IRON:
             case MINING_MOTHERLODE_STEEL:
@@ -183,11 +181,10 @@ public class AnimationCache {
             case MINING_MOTHERLODE_DRAGON_OR_TRAILBLAZER:
             case MINING_MOTHERLODE_TRAILBLAZER:
             case MINING_MOTHERLODE_CRYSTAL:
-                animationDelay = now.plusMillis(1800);
                 return true;
             case IDLE:
             default:
-                return animationDelay.isAfter(now);
+                return false;
         }
     }
 }

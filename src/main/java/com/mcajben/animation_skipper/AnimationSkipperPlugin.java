@@ -44,7 +44,7 @@ public class AnimationSkipperPlugin extends Plugin {
 
         final int playerAnimation = player.getAnimation();
         final boolean visible = cache.onClientTick(playerAnimation);
-        this.overlay.setVisible(visible);
+        this.overlay.updateVisibility(visible);
     }
 
     @Provides
