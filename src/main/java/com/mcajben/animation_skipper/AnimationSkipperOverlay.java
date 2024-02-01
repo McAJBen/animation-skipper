@@ -9,17 +9,14 @@ import net.runelite.client.ui.overlay.OverlayPosition;
 import java.awt.*;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Random;
 
 public class AnimationSkipperOverlay extends Overlay {
-    private static final String[] TEXT = {"ONE MINUTE LATER", "ONE HOUR LATER", "TEN HOURS LATER", "ONE DAY LAYER", "SOME TIME PASSES", "A LITTLE LATER"};
-    private static final Random rand = new Random();
     private final Client client;
     private final AnimationSkipperConfig config;
     private boolean isVisible = false;
     private Instant lastFadeStart = Instant.MIN;
     private Duration lastFadeDuration = Duration.ZERO;
-    private int textIndex = 0;
+    private String displayText = "";
 
     @Inject
     private AnimationSkipperOverlay(AnimationSkipperPlugin plugin, Client client, AnimationSkipperConfig config) {
@@ -45,7 +42,7 @@ public class AnimationSkipperOverlay extends Overlay {
             graphics.setFont(new Font("Times New Roman", Font.BOLD, textSize));
             graphics.setComposite(AlphaComposite.DstOut);
             graphics.setColor(Color.white);
-            drawStringCentered(graphics, client.getCanvasWidth(), client.getCanvasHeight(), TEXT[textIndex]);
+            drawStringCentered(graphics, client.getCanvasWidth(), client.getCanvasHeight(), displayText);
         }
 
         return null;
@@ -76,7 +73,7 @@ public class AnimationSkipperOverlay extends Overlay {
         }
         if (this.isVisible && progressMade >= 1.0f) {
             // reset text only when text was just invisible
-            this.textIndex = getRandomTextIndex(this.textIndex);
+            this.displayText = DisplayTextFactory.getRandomText(this.displayText);
         }
     }
 
@@ -114,14 +111,6 @@ public class AnimationSkipperOverlay extends Overlay {
         }
     }
 
-    private static int getRandomTextIndex(int previousTextIndex) {
-        final int index = rand.nextInt(TEXT.length - 1);
-        if (index >= previousTextIndex) {
-            return index + 1;
-        } else {
-            return index;
-        }
-    }
 
     private static void drawStringCentered(Graphics2D graphics, int canvasWidth, int canvasHeight, String text) {
         final FontMetrics metrics = graphics.getFontMetrics();
