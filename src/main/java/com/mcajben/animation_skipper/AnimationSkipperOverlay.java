@@ -59,19 +59,19 @@ public class AnimationSkipperOverlay extends Overlay {
         final Duration fadeDuration = Duration.ofMillis(config.fadeDuration());
         final Duration debounceDuration = Duration.ofMillis(config.debounceDuration());
 
-        final float progressMade = getFadeProgress(now, lastFadeStart, lastFadeDuration);
+        final float previousProgressMade = getFadeProgress(now, lastFadeStart, lastFadeDuration);
 
-        final Duration fadeDurationRemaining = Duration.ofMillis((long) (fadeDuration.toMillis() * progressMade));
+        final Duration startingFadeDuration = Duration.ofMillis((long) (fadeDuration.toMillis() * (1.0f - previousProgressMade)));
 
         this.isVisible = visible;
         this.lastFadeDuration = fadeDuration;
-        if (this.isVisible) {
-            this.lastFadeStart = now.plus(fadeDurationRemaining);
+        if (!this.isVisible && previousProgressMade >= 1.0f) {
+            // add debounceDuration when fading away from 100% visible
+            this.lastFadeStart = now.minus(startingFadeDuration).plus(debounceDuration);
         } else {
-            // add debounceDuration when fading away
-            this.lastFadeStart = now.plus(fadeDurationRemaining).plus(debounceDuration);
+            this.lastFadeStart = now.minus(startingFadeDuration);
         }
-        if (this.isVisible && progressMade >= 1.0f) {
+        if (this.isVisible && previousProgressMade >= 1.0f) {
             // reset text only when text was just invisible
             this.displayText = DisplayTextFactory.getRandomText(this.displayText);
         }
