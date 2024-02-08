@@ -1,7 +1,5 @@
 package com.mcajben.animation_skipper;
 
-import java.time.Instant;
-
 import static net.runelite.api.AnimationID.*;
 
 public class AnimationCache {
@@ -10,7 +8,6 @@ public class AnimationCache {
      * @return true if the user is in an animation
      */
     public boolean onClientTick(int playerAnimation) {
-        final Instant now = Instant.now();
         switch (playerAnimation) {
             case MAGIC_LUNAR_SHARED:
             case MAGIC_LUNAR_PLANK_MAKE:
