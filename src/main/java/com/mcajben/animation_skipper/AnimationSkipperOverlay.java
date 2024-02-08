@@ -35,13 +35,21 @@ public class AnimationSkipperOverlay extends Overlay {
 
         if (opacity > 0.01f) {
             final Color overlayColor = config.overlayColor();
+            final Color textColor = config.textColor();
             final int textSize = config.textSize();
             graphics.setColor(new Color(overlayColor.getRed(), overlayColor.getGreen(), overlayColor.getBlue(), (int) (overlayColor.getAlpha() * opacity)));
             graphics.fill(new Rectangle(client.getCanvas().getSize()));
 
             graphics.setFont(new Font("Times New Roman", Font.BOLD, textSize));
-            graphics.setComposite(AlphaComposite.DstOut);
-            graphics.setColor(Color.white);
+
+            if (textColor.getAlpha() == 0) {
+                // Use transparent text
+                graphics.setComposite(AlphaComposite.DstOut);
+                graphics.setColor(Color.white);
+            } else {
+                graphics.setColor(textColor);
+            }
+
             drawStringCentered(graphics, client.getCanvasWidth(), client.getCanvasHeight(), displayText);
         }
 
