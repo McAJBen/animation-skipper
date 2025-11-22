@@ -1,5 +1,6 @@
 # Animation Skipper
-Skips player animations while skilling to improve training efficiency
+Fades screen to black during skilling animations to improve awareness.
+This is helpful for AFK activities so it is more obvious when your character stops performing actions.
 
 Supports:
 - Cooking
