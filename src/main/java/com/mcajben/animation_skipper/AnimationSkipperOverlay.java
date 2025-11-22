@@ -40,17 +40,19 @@ public class AnimationSkipperOverlay extends Overlay {
             graphics.setColor(new Color(overlayColor.getRed(), overlayColor.getGreen(), overlayColor.getBlue(), (int) (overlayColor.getAlpha() * opacity)));
             graphics.fill(new Rectangle(client.getCanvas().getSize()));
 
-            graphics.setFont(new Font("Times New Roman", Font.BOLD, textSize));
+            if (config.textEnabled()) {
+                graphics.setFont(new Font("Times New Roman", Font.BOLD, textSize));
 
-            if (textColor.getAlpha() == 0) {
-                // Use transparent text
-                graphics.setComposite(AlphaComposite.DstOut);
-                graphics.setColor(Color.white);
-            } else {
-                graphics.setColor(textColor);
+                if (textColor.getAlpha() == 0) {
+                    // Use transparent text
+                    graphics.setComposite(AlphaComposite.DstOut);
+                    graphics.setColor(Color.white);
+                } else {
+                    graphics.setColor(textColor);
+                }
+
+                drawStringCentered(graphics, client.getCanvasWidth(), client.getCanvasHeight(), displayText);
             }
-
-            drawStringCentered(graphics, client.getCanvasWidth(), client.getCanvasHeight(), displayText);
         }
 
         return null;

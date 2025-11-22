@@ -18,9 +18,19 @@ public interface AnimationSkipperConfig extends Config {
         return new Color(0, 0, 0, 160);
     }
 
-    @Alpha
     @ConfigItem(
             position = 1,
+            keyName = "textEnabled",
+            name = "Text Enabled",
+            description = "Toggles whether text is displayed in the overlay."
+    )
+    default boolean textEnabled() {
+        return true;
+    }
+
+    @Alpha
+    @ConfigItem(
+            position = 2,
             keyName = "textColor",
             name = "Text Color",
             description = "Color of text on full screen overlay. If opacity is set to 0 then text is completely transparent."
@@ -30,7 +40,7 @@ public interface AnimationSkipperConfig extends Config {
     }
 
     @ConfigItem(
-            position = 2,
+            position = 3,
             keyName = "textSize",
             name = "Text Size",
             description = "Text Size"
@@ -41,7 +51,7 @@ public interface AnimationSkipperConfig extends Config {
     }
 
     @ConfigItem(
-            position = 3,
+            position = 4,
             keyName = "debounceDuration",
             name = "Debounce duration",
             description = "Time between animation ending and the overlay fading out. Increasing the debounce duration can prevent flickering."
@@ -52,7 +62,7 @@ public interface AnimationSkipperConfig extends Config {
     }
 
     @ConfigItem(
-            position = 4,
+            position = 5,
             keyName = "fadeDuration",
             name = "Fade duration",
             description = "Time for the overlay to fade in and out"
