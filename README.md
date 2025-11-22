@@ -12,5 +12,6 @@ Supports:
 - Herblore
 - Crafting
 - Smithing
+- Sailing (Salvaging only)
 
 Based on the works of [Skilling Notifications](https://github.com/erwinvc/runelite-plugins/tree/skilling-notifications)
